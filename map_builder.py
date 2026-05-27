@@ -519,19 +519,19 @@ class MapBuilder:
                             
                             # Рисуем линию для сегмента
                             ax.plot(seg_x, seg_y,
-                                   color=MAP_COLORS['trajectory'], linewidth=2.5, alpha=0.9,
+                                   color=MAP_COLORS['trajectory'], linewidth=1.2, alpha=0.9,
                                    label='Траектория' if idx == 0 else "",
                                    zorder=5)
                 else:
                     # Если нет информации о сегментах, рисуем как раньше
                     ax.plot(utm_data['traj_x'], utm_data['traj_y'],
-                           color=MAP_COLORS['trajectory'], linewidth=2.5, alpha=0.9,
+                           color=MAP_COLORS['trajectory'], linewidth=1.2, alpha=0.9,
                            label='Траектория', zorder=5)
                 
                 # Точки траектории
                 ax.scatter(utm_data['traj_x'], utm_data['traj_y'],
-                          c=MAP_COLORS['trajectory_point'], s=15, marker='o',
-                          alpha=0.7, edgecolors='none', zorder=5)
+                          c=MAP_COLORS['trajectory_point'], s=3, marker='o',
+                          alpha=0.5, edgecolors='none', zorder=5)
             else:
                 # Для MSA рисуем станции
                 ax.scatter(utm_data['traj_x'], utm_data['traj_y'],
@@ -563,6 +563,6 @@ class MapBuilder:
         
         for x, y, name in zip(x_coords, y_coords, display_names):
             ax.annotate(name, (x, y),
-                       xytext=(0, 15), textcoords='offset points',
-                       fontsize=10, fontweight='bold', ha='center', va='bottom', zorder=12,
+                       xytext=(-2, -2), textcoords='offset points',
+                       fontsize=8, fontweight='normal', ha='right', va='bottom', zorder=12,
                        clip_on=True)

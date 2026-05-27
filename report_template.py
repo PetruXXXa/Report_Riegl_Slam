@@ -2,9 +2,6 @@
 Модуль с жестким макетом HTML отчета (шаблон).
 """
 
-import datetime
-
-
 class ReportTemplate:
     """Содержит HTML шаблон отчета"""
     
@@ -40,13 +37,18 @@ class ReportTemplate:
                 box-shadow: none !important;
                 border-radius: 0 !important;
             }}
-            .section {{ page-break-inside: avoid; }}
+            .section {{ margin: 5px 0 !important; padding: 0 !important; }}
             .section.page-break-before {{ page-break-before: always; }}
             .section.no-page-break {{ 
                 page-break-before: avoid !important;
-                page-break-inside: avoid !important;
-                page-break-after: avoid !important;
             }}
+            .subsection {{ margin: 8px 0 !important; padding: 0 !important; }}
+            .text-stats {{ margin: 5px 0 !important; padding: 5px !important; }}
+            .text-stat-item {{ margin: 2px 0 !important; padding: 2px 0 !important; }}
+            h1 {{ margin-top: 0 !important; padding-bottom: 5px !important; }}
+            h2 {{ margin-top: 15px !important; margin-bottom: 8px !important; }}
+            h3 {{ margin-top: 12px !important; margin-bottom: 6px !important; }}
+            h4 {{ margin-top: 10px !important; margin-bottom: 5px !important; }}
             .image-container {{ 
                 page-break-inside: avoid !important;
                 page-break-before: avoid !important;
@@ -55,7 +57,7 @@ class ReportTemplate:
             .image-container img {{ 
                 width: 100% !important; 
                 height: auto !important; 
-                max-width: 175mm !important;  /* Ширина A4 минус поля */
+                max-width: 100% !important;
                 object-fit: contain !important;
                 display: block !important;
                 margin-left: auto !important;
@@ -64,7 +66,7 @@ class ReportTemplate:
             .map-container img {{
                 width: 100% !important;
                 height: auto !important;
-                max-width: 175mm !important;
+                max-width: 100% !important;
                 display: block !important;
                 margin-left: auto !important;
                 margin-right: auto !important;
@@ -133,21 +135,13 @@ class ReportTemplate:
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }}
         .image-container {{ 
-            margin: 20px 0; 
+            margin: 15px 0; 
             text-align: center; 
-            background-color: white; 
-            padding: 15px; 
-            border-radius: 5px; 
-            border: 1px solid #eee;
         }}
         .image-container img {{
             width: 100%;
             height: auto;
             max-width: 100%;
-            object-fit: contain;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }}
         
         .map-container {{
@@ -247,24 +241,23 @@ class ReportTemplate:
         .accuracy-table {{ 
             width: 100%; 
             border-collapse: collapse; 
-            margin: 15px 0; 
+            margin: 10px 0; 
             font-size: 0.9em; 
             background-color: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            border: 2px solid #333;
+            border: 1px solid black;
         }}
         .accuracy-table th {{ 
             background-color: #3498db; 
             color: white; 
-            padding: 10px; 
-            border: 2px solid #2980b9; 
+            padding: 3px 6px; 
+            border: 1px solid black; 
             font-weight: bold;
             text-align: center;
             font-size: 1em;
         }}
         .accuracy-table td {{ 
-            padding: 8px 10px; 
-            border: 1px solid #666; 
+            padding: 1px 6px; 
+            border: 1px solid black; 
             text-align: center; 
             font-size: 0.95em;
         }}
@@ -276,17 +269,20 @@ class ReportTemplate:
         }}
         @media print {{
             .accuracy-table {{
-                border: 2px solid black !important;
+                border: 1pt solid black !important;
                 box-shadow: none !important;
+                border-collapse: collapse !important;
             }}
             .accuracy-table th {{
                 background-color: #d9d9d9 !important;
                 color: black !important;
-                border: 1.5pt solid black !important;
+                border: 1pt solid black !important;
+                padding: 3px 6px !important;
                 font-weight: bold;
             }}
             .accuracy-table td {{
                 border: 1pt solid black !important;
+                padding: 1px 6px !important;
             }}
             .accuracy-table tr:nth-child(even) {{
                 background-color: #f2f2f2 !important;
@@ -325,9 +321,6 @@ class ReportTemplate:
 <body>
     <div class="report-container">
         <h1>Отчет уравнивания НЛС</h1>
-        <p style="text-align: center; color: #7f8c8d; margin-bottom: 30px;">
-            Дата генерации: {generation_date}
-        </p>
         
         <!-- Раздел 1: Общая статистика -->
         <div class="section no-page-break">
@@ -404,9 +397,7 @@ class ReportTemplate:
             </div>
         </div>
         
-        <div class="footer">
-            Отчет сгенерирован автоматически программой "Генератор отчетов MSA"
-        </div>
+        
     </div>
 </body>
 </html>
